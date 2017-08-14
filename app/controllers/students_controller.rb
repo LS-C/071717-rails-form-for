@@ -8,11 +8,33 @@ class StudentsController < ApplicationController
   end
 
   def new
+    @student = Student.new
   end
 
   def create
-    Student.create(name: params[:name])
+    Student.create(student_params)
 
     redirect_to students_path
+  end
+
+  # /students/:id/edit
+  def edit
+    @student = Student.find_by(id: params[:id])
+
+  end
+
+
+  def destroy
+    @student = Student.find_by(id: params[:id])
+    @student.destroy
+
+    redirect_to students_path
+  end
+
+
+  private
+
+  def student_params
+    params.require(:student).permit(:name, :email, :dob)
   end
 end

@@ -8,7 +8,11 @@ class ApplicationController < ActionController::Base
   end
 
   def make_link(text, path)
-    
+    if !path.is_a?(String)
+      "<a href='#{path.class.to_s.downcase.pluralize}/#{path.id}'>#{text}</a>".html_safe
+    else
+      "<a href='#{path}'>#{text}</a>".html_safe
+    end
   end
 
 end

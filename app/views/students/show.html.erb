@@ -4,3 +4,5 @@
 <h4><%= @student.email %></h4>
 
 <%= link_to 'Back', '/students' %>
+<%= link_to('Edit this new student', edit_student_path(@student)) %>
+<%= link_to 'Delete this new student', student_path(@student), method: 'DELETE' %>
